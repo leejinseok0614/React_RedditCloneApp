@@ -1,0 +1,35 @@
+version: "3"
+services:
+    db:
+        image: postgres:latest
+        container_name: reddit-postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: "${DB_USER_ID}"
+            POSTGRES_PASSWORD: "${DB_USER_PASSWORD}"
+        volumes:
+            - ./data:/var/lib/postgresql/data
+
+    # server:
+    #     build: 
+    #         context: ./server
+    #     container_name: reddit-server
+    #     restart: always
+    #     ports:
+    #         - "4000:4000"
+    #     volumes:
+    #         - /app/node_modules
+    #         - ./server:/app
+        
+    # client:
+    #     build:
+    #         context: ./client
+    #     container_name: reddit-client
+    #     ports:
+    #         - "3000:3000"
+    #     volumes:
+    #         - /app/node_modules
+    #         - ./client:/app
+    #     stdin_open: true
